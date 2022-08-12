@@ -85,6 +85,10 @@ def augment_data(images, masks, save_path, augment=True):
             tmp_image_name = f"{name}_{index}.png"
             tmp_mask_name = f"{name}_{index}.png"
 
+            # fix in windows
+            tmp_image_name = tmp_image_name.replace('people_segmentation\\images\\', '')
+            tmp_mask_name = tmp_mask_name.replace('people_segmentation\\images\\', '')
+
             image_path = os.path.join(save_path, "image", tmp_image_name)
             mask_path = os.path.join(save_path, "mask", tmp_mask_name)
 
@@ -99,7 +103,7 @@ if __name__ == "__main__":
     np.random.seed(42)
 
     """ Load the dataset """
-    data_path = "people_segmentation"
+    data_path = "C:/Users/yong/Projects/github/Human-Image-Segmentation-with-DeepLabV3Plus-in-TensorFlow/people_segmentation"
     (train_x, train_y), (test_x, test_y) = load_data(data_path)
 
     print(f"Train:\t {len(train_x)} - {len(train_y)}")

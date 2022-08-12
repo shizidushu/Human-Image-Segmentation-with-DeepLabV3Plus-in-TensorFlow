@@ -73,7 +73,7 @@ if __name__ == "__main__":
     create_dir("files")
 
     """ Hyperparameters """
-    batch_size = 2
+    batch_size = 7
     lr = 1e-4
     num_epochs = 20
     model_path = os.path.join("files", "model.h5")
@@ -96,7 +96,9 @@ if __name__ == "__main__":
 
     """ Model """
     model = deeplabv3_plus((H, W, 3))
-    model.compile(loss=dice_loss, optimizer=Adam(lr), metrics=[dice_coef, iou, Recall(), Precision()])
+    model.compile(loss=dice_loss, optimizer=Adam(lr), metrics=[dice_coef, iou, Recall(), Precision()],  run_eagerly=True)
+
+    # model.load_weights('pretrain/model.h5')
 
     callbacks = [
         ModelCheckpoint(model_path, verbose=1, save_best_only=True),

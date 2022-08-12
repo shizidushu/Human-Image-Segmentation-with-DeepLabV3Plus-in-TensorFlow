@@ -1,0 +1,7 @@
+people_segmentation
+*.zip
+new_data
+files
+logs
+__pycache__
+*.csv
